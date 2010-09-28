@@ -7,6 +7,8 @@ gem 'devise'
 gem 'nokogiri'
 gem 'haml-rails'
 gem 'jquery-rails'
+gem 'hpricot'
+gem 'ruby_parser'
 
 group :test do
   gem 'factory_girl_rails'

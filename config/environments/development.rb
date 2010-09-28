@@ -24,5 +24,12 @@ Whowonit::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
   
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address => "smtp.tre.it",
+    :port => 25, 
+    :domain => 'whowon.it'
+  } 
 end
 
