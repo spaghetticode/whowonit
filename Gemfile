@@ -9,6 +9,7 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'hpricot'
 gem 'ruby_parser'
+gem 'email_spec'
 
 group :test do
   gem 'factory_girl_rails'
