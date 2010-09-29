@@ -14,29 +14,32 @@ Then /^I should see the following auctions:$/ do |expected_auctions_table|
 end
 
 Given /^I added a few auctions to my list$/ do
-  3.times do
-    And 'I add an auction to my list'
+  2.times do
+    And 'I add a new auction to my list'
   end
 end
 
-Then /^I should see my auctions details$/ do
-  Auction.all.each do |auction|
-    And %(I should see "#{auction.title}" within an auction row)
+Then /^I should see all my visible auctions (\w+) field$/ do |field|
+  @user.visible_auctions.each do |auction|
+    And %(I should see "#{auction.send(field)}" within an auction row)
   end
 end
 
-When /^I add an auction to my list$/ do
-  Factory(:auction)
+When /^I add a new auction to my list$/ do
+  @auction = Factory(:auction, :user_ids => [@user.id])
 end
 
 Then /^I should see the new auction details$/ do
-  And %(I should see "#{Auction.last.title} within an auction row")
+  And %(I should see "#{@auction.title}" within an auction row)
 end
 
-When /^I remove an auctions from my list$/ do
-  pending # express the regexp above with the code you wish you had
+Then /^I should not see the old last auction details$/ do
+  And %(I should not see "#{@destroyed.title}" within an auction row)
 end
 
-Then /^I should not see the old auction details$/ do
-  pending # express the regexp above with the code you wish you had
+When /^I remove the last auction from my list$/ do
+  Given 'I added a few auctions to my list'
+  @destroyed = @user.auctions.last
+  When 'I go to the auctions list page'
+  And  %(I press "remove" within the auction row with id #{@destroyed.id})
 end

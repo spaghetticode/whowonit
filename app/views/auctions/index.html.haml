@@ -7,7 +7,7 @@
     %th
 
   - @auctions.each do |auction|
-    %tr.auction
+    %tr.auction{:id => "id-#{auction.id}"}
       %td= link_to auction.title, auction.url
       %td= auction.end_time
       %td= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
