@@ -80,3 +80,7 @@ Given /^I am logged in$/ do
   And   'I fill in my credentials within the login form'
   And   'I submit the login form'
 end
+
+Given /^I should see my email/ do
+  And %(I should see "#{@user.email}")
+end

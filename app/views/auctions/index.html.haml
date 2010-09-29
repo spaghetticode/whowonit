@@ -1,0 +1,17 @@
+%h1 Auctions List
+
+%table
+  %tr
+    %th Auction
+    %th End time
+    %th
+
+  - @auctions.each do |auction|
+    %tr.auction
+      %td= link_to auction.title, auction.url
+      %td= auction.end_time
+      %td= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'Add auction', new_auction_path

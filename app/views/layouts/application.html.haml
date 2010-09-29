@@ -12,8 +12,9 @@
           %li= link_to 'Sign in', new_user_session_path
           %li= link_to 'Sign up', new_user_registration_path
         -else
+          %li= current_user.email
           %li= link_to 'Sign out', destroy_user_session_path
-          %li= link_to 'Account', edit_user_registration_path 
+          %li= link_to 'Account', edit_user_registration_path
     #flash
       - flash.each do |type, message|
         %p{:class => type}= message

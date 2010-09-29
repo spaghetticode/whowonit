@@ -9,6 +9,7 @@ Feature: Manage authentications
     And   I fill in my credentials within the login form
     And   I submit the login form
     Then  I should see "Signed in successfully" within the notification area
+    And   I should see my email
     
   Scenario: Failed Authentication
     Given I am a registered user

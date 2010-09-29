@@ -10,7 +10,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100928202733) do
+ActiveRecord::Schema.define(:version => 20100929172312) do
+
+  create_table "auctions", :force => true do |t|
+    t.string   "url",        :null => false
+    t.datetime "end_time",   :null => false
+    t.string   "title",      :null => false
+    t.string   "item_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "auctions_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "auction_id"
+  end
+
+  add_index "auctions_users", ["auction_id", "user_id"], :name => "index_auctions_users_on_auction_id_and_user_id", :unique => true
+  add_index "auctions_users", ["user_id", "auction_id"], :name => "index_auctions_users_on_user_id_and_auction_id", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
