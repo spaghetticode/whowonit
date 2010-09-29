@@ -41,6 +41,7 @@ module Whowonit
     config.generators do |g|
       g.template_engine :haml
       g.test_framework :rspec
+      g.integration_tool :rspec
     end
   end
 end

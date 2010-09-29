@@ -3,6 +3,8 @@ module NavigationHelpers
     case page_name
     when /the home\s?page/
       '/'
+    when /the auctions list page/
+      auctions_path
     when /the login page/
       new_user_session_path
     when /the registration page/

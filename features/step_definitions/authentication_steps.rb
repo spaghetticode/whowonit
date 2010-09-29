@@ -73,3 +73,10 @@ Given /^I did not receive my confirmation instructions$/ do
   ActionMailer::Base.deliveries.clear
   @user.update_attribute(:confirmed_at, nil)
 end
+
+Given /^I am logged in$/ do
+  Given 'I am a registered user'
+  When  'I go to the login page'
+  And   'I fill in my credentials within the login form'
+  And   'I submit the login form'
+end
