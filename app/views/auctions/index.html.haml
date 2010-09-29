@@ -4,12 +4,13 @@
   %tr
     %th Auction
     %th End time
-    %th
+    %th Seller
 
   - @auctions.each do |auction|
     %tr.auction{:id => "id-#{auction.id}"}
       %td= link_to auction.title, auction.url
       %td= auction.end_time
+      %td= auction.seller_name
       %td= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
 
 %br

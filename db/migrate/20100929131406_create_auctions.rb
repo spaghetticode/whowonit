@@ -5,6 +5,8 @@ class CreateAuctions < ActiveRecord::Migration
       t.datetime :end_time, :null => false
       t.string :title,      :null => false
       t.string :item_id,    :null => false
+      t.integer :seller_id, :null => false
+      
       t.timestamps
     end
   end

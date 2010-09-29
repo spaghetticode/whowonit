@@ -10,6 +10,7 @@ Factory.define :auction do |a|
   a.sequence(:item_id) {|n| "1234#{n}"}
   a.end_time 1.day.from_now
   a.sequence(:title) {|n| "An auction title #{n}"}
+  a.association :seller
 end
 
 Factory.define :seller do |s|

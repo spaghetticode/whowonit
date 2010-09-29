@@ -26,6 +26,12 @@ describe Auction do
       invalid = Factory.build(:auction, :item_id => @auction.item_id)
       invalid.should have(1).error_on(:item_id)
     end
+    
+    it { @auction.seller.should_not be_nil }
+    
+    it 'seller_name should return the seller name' do
+      @auction.seller_name.should == @auction.seller.name
+    end
   end
   
   context 'VISIBLE SCOPE' do

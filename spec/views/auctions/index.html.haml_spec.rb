@@ -4,10 +4,9 @@ describe "auctions/index.html.haml" do
   before(:each) do
     assign(:auctions, [
       stub_model(Auction,
-        :url => "Url"
-      ),
-      stub_model(Auction,
-        :url => "Url"
+        :url => "Url",
+        :end_time => Time.now,
+        :seller => stub_model(Seller, :name => 'Name')
       )
     ])
   end
