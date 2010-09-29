@@ -6,7 +6,7 @@ describe Auction do
     it { should have(1).error_on(:title) }
     it { should have(1).error_on(:url) }
     it { should have(1).error_on(:item_id) }
-    it { pending { should have(1).error_on(:seller) }}
+    it { should have(1).error_on(:seller) }
     it { should have(1).error_on(:end_time)}
   end
   
@@ -15,6 +15,7 @@ describe Auction do
     
     it { @auction.should be_valid }
     it { @auction.users.should be_empty }
+    it { @auction.seller.should_not be_nil }
     
     it 'url should be unique' do
       invalid = Factory.build(:auction, :url => @auction.url)

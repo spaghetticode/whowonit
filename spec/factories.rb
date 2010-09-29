@@ -11,3 +11,7 @@ Factory.define :auction do |a|
   a.end_time 1.day.from_now
   a.sequence(:title) {|n| "An auction title #{n}"}
 end
+
+Factory.define :seller do |s|
+  s.sequence(:name) {|n| "Seller #{n}"}
+end
