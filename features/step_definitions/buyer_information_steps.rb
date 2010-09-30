@@ -1,6 +1,7 @@
-Given /^one of my auctions get updated with the buyer information$/ do
+Given /^one of my ended auctions gets updated with the buyer information$/ do
   @buyer = Factory(:buyer)
   @auction = @user.auctions.first
+  @auction.update_attribute(:end_time, 1.day.ago)
   @auction.update_attribute(:buyer, @buyer)
 end
 

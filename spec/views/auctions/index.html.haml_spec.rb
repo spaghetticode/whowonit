@@ -13,7 +13,7 @@ describe "auctions/index.html.haml" do
 
   it "renders a list of auctions" do
     render
-    pending do
+    pending 'rspec bug' do
       rendered.should have_selector("tr>td", :content => "Url".to_s, :count => 2)
     end
   end

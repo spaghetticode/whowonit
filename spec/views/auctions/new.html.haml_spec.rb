@@ -10,7 +10,7 @@ describe "auctions/new.html.haml" do
 
   it "renders new auction form" do
     render
-    pending do
+    pending 'rspec bug' do
       rendered.should have_selector("form", :action => auctions_path, :method => "post") do |form|
         form.should have_selector("input#auction_url", :name => "auction[url]")
       end
