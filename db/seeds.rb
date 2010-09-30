@@ -1,7 +1,8 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
-#   Mayor.create(:name => 'Daley', :city => cities.first)
+require 'factory_girl'
+require File.join(Rails.root, 'spec/factories')
+
+user = Factory(:user, :email => 'andrea@spaghetticode.it', :confirmed_at => Time.now)
+seller = Factory(:seller, :name => 'old.comp')
+buyer = Factory(:buyer, :name => 'superfiko')
+auction = Factory(:auction, :seller => seller, :buyer => buyer)
+auction.users << user
