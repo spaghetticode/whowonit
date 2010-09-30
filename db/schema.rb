@@ -30,13 +30,13 @@ ActiveRecord::Schema.define(:version => 20100929222439) do
   add_index "auctions_users", ["auction_id", "user_id"], :name => "index_auctions_users_on_auction_id_and_user_id", :unique => true
   add_index "auctions_users", ["user_id", "auction_id"], :name => "index_auctions_users_on_user_id_and_auction_id", :unique => true
 
-  create_table "sellers", :force => true do |t|
+  create_table "ebayers", :force => true do |t|
     t.string   "name",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "sellers", ["name"], :name => "index_sellers_on_name", :unique => true
+  add_index "ebayers", ["name"], :name => "index_ebayers_on_name", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false

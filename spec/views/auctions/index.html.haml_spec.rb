@@ -6,7 +6,7 @@ describe "auctions/index.html.haml" do
       stub_model(Auction,
         :url => "Url",
         :end_time => Time.now,
-        :seller => stub_model(Seller, :name => 'Name')
+        :seller => stub_model(Ebayer, :name => 'Name')
       )
     ])
   end

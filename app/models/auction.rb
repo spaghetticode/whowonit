@@ -1,5 +1,6 @@
 class Auction < ActiveRecord::Base
-  belongs_to :seller
+  belongs_to :seller, :class_name => 'Ebayer', :foreign_key => 'seller_id'
+  
   has_and_belongs_to_many :users
   
   validates_presence_of :title, :url, :end_time, :item_id, :seller

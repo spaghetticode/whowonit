@@ -11,5 +11,5 @@
     = f.text_field :item_id, :value => "1234#{rand(1000).to_i}"
     = f.text_field :title, :value => 'a title'
     = f.text_field :end_time, :value => 1.day.from_now
-    = f.text_field :seller_id, :value => Seller.first.try(:id)
+    = f.text_field :seller_id, :value => Ebayer.first.try(:id)
     = f.submit 'Save'

@@ -1,11 +1,11 @@
-class CreateSellers < ActiveRecord::Migration
+class CreateEbayers < ActiveRecord::Migration
   def self.up
-    create_table :sellers do |t|
+    create_table :ebayers do |t|
       t.string :name, :null => false
 
       t.timestamps
     end
-    add_index :sellers, :name, :unique => true
+    add_index :ebayers, :name, :unique => true
   end
 
   def self.down
