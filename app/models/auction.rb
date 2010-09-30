@@ -7,8 +7,10 @@ class Auction < ActiveRecord::Base
   validates_presence_of :title, :url, :end_time, :item_id, :seller
   validates_uniqueness_of :url, :item_id
   
-  scope :visible, lambda {where('end_time >=?', 90.days.ago)}
+  VISIBILITY_DAYS = 90
   scope :pending, where(:buyer_id => nil)
+  scope :closed,  lambda { where('end_time < ?', Time.now) }
+  scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.send(:days).ago) }
   
   def seller_name
     seller.name
@@ -16,5 +18,13 @@ class Auction < ActiveRecord::Base
   
   def buyer_name
     buyer.try(:name)
+  end
+  
+  def visible?
+    end_time >= VISIBILITY_DAYS.send(:days).ago
+  end
+  
+  def closed?
+    end_time < Time.now
   end
 end

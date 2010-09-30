@@ -17,6 +17,8 @@ describe Auction do
     it { @auction.users.should be_empty }
     it { @auction.seller.should_not be_nil }
     it { @auction.buyer.should be_nil }
+    it { @auction.should be_visible }
+    it { @auction.should_not be_closed }
     
     it 'url should be unique' do
       invalid = Factory.build(:auction, :url => @auction.url)
@@ -42,27 +44,49 @@ describe Auction do
       @auction.buyer = buyer = Factory(:buyer)
       @auction.buyer_name.should == buyer.name
     end
-  end
-  
-  context 'VISIBLE SCOPE' do
-    before do
-      3.times { Factory(:auction) }
-      @invisible = Auction.last
-      @invisible.update_attribute(:end_time, 91.days.ago)
+    
+    it 'should be closed if end time is in the past' do
+      @auction.end_time = 1.hour.ago
+      @auction.should be_closed
     end
     
-    it { Auction.visible.should_not include(@invisible) }
-    it { Auction.visible.size.should == 2 }
+    it 'should not be visible if ended more than 90 days ago' do
+      @auction.end_time = 91.days.ago
+      @auction.should_not be_visible
+    end
   end
   
-  context 'PENDING SCOPE' do
-    before do
-      3.times { Factory(:auction) }
-      @unpending = Auction.last
-      @unpending.update_attribute(:buyer, Factory(:buyer))
+  context 'scopes' do
+    before { 3.times { Factory(:auction) } }
+  
+    context 'VISIBLE SCOPE' do
+      before do
+        @invisible = Auction.last
+        @invisible.update_attribute(:end_time, 91.days.ago)
+      end
+    
+      it { Auction.visible.should_not include(@invisible) }
+      it { Auction.visible.size.should == 2 }
+    end
+  
+    context 'PENDING SCOPE' do
+      before do
+        @unpending = Auction.last
+        @unpending.update_attribute(:buyer, Factory(:buyer))
+      end
+    
+      it { Auction.pending.should_not include(@unpending) }
+      it { Auction.pending.size.should == 2 }
     end
     
-    it { Auction.pending.should_not include(@unpending) }
-    it { Auction.pending.size.should == 2 }
+    context 'CLOSED SCOPE' do
+      before do
+        @closed = Auction.last
+        @closed.update_attribute(:end_time, 1.hour.ago)
+      end
+    
+      it { Auction.closed.should include(@closed) }
+      it { Auction.closed.size.should == 1 }
+    end
   end
 end
