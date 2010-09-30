@@ -27,4 +27,8 @@ class Auction < ActiveRecord::Base
   def closed?
     end_time < Time.now
   end
+  
+  def got_buyer?
+    buyer and buyer_id_changed? and buyer_id_was.nil?
+  end
 end

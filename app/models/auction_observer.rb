@@ -1,6 +1,10 @@
 class AuctionObserver < ActiveRecord::Observer
   def after_update(auction)
-    # if buyer data is available
-    # sends an email to all users associated to this auction
+    return if !auction.visible? || !auction.closed?
+    if auction.got_buyer?
+      auction.users.find_each do |user|
+        UserMailer.auction_buyer_email(user, auction).deliver
+      end
+    end
   end
 end
