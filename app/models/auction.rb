@@ -1,5 +1,6 @@
 class Auction < ActiveRecord::Base
-  belongs_to :seller, :class_name => 'Ebayer', :foreign_key => 'seller_id'
+  belongs_to :seller
+  belongs_to :buyer
   
   has_and_belongs_to_many :users
   
@@ -11,5 +12,9 @@ class Auction < ActiveRecord::Base
   
   def seller_name
     seller.name
+  end
+  
+  def buyer_name
+    buyer.try(:name)
   end
 end

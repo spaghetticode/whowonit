@@ -16,6 +16,7 @@ describe Auction do
     it { @auction.should be_valid }
     it { @auction.users.should be_empty }
     it { @auction.seller.should_not be_nil }
+    it { @auction.buyer.should be_nil }
     
     it 'url should be unique' do
       invalid = Factory.build(:auction, :url => @auction.url)
@@ -31,6 +32,15 @@ describe Auction do
     
     it 'seller_name should return the seller name' do
       @auction.seller_name.should == @auction.seller.name
+    end
+    
+    it 'buyer_name should be nil if there is no buyer' do
+      @auction.buyer_name.should be_nil
+    end
+    
+    it 'buyer_name should return the buyer name if available' do
+      @auction.buyer = buyer = Factory(:buyer)
+      @auction.buyer_name.should == buyer.name
     end
   end
   
