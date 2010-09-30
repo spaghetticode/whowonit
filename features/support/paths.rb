@@ -3,6 +3,9 @@ module NavigationHelpers
     case page_name
     when /the home\s?page/
       '/'
+    when /the new user_mailer page/
+      new_user_mailer_path
+
     when /the auctions list page/
       auctions_path
     when /the login page/
