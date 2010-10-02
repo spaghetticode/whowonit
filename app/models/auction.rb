@@ -1,6 +1,6 @@
 class Auction < ActiveRecord::Base
-  belongs_to :seller
-  belongs_to :buyer
+  belongs_to :seller, :class_name => 'Ebayer'
+  belongs_to :buyer,  :class_name => 'Ebayer'
   
   has_and_belongs_to_many :users
   
@@ -30,5 +30,18 @@ class Auction < ActiveRecord::Base
   
   def got_buyer?
     buyer and buyer_id_changed? and buyer_id_was.nil?
+  end
+
+  def find_buyer
+    response = Nokogiri.HTML(open(seller.feedback_url))
+    feedback = response.css('.bot td:nth-child(2)').find{|t| t.text =~ /#{item_id}/}
+    if feedback
+      name = feedback.parent.previous_sibling.children[2].children.css(".mbg").children.css("a").first[:title].match(/Member id (\w+)/)[1]
+      set_buyer(name)
+    end
+  end
+  
+  def set_buyer(name)
+    update_attribute :buyer, Ebayer.find_or_create_by_name(name)
   end
 end

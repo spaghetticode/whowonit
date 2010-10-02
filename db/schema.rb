@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(:version => 20100930093851) do
 
   create_table "ebayers", :force => true do |t|
     t.string   "name",       :null => false
-    t.string   "type",       :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -10,13 +10,9 @@ Factory.define :auction do |a|
   a.sequence(:item_id) {|n| "1234#{n}"}
   a.end_time 1.day.from_now
   a.sequence(:title) {|n| "An auction title #{n}"}
-  a.association :seller
+  a.association :seller, :factory => :ebayer
 end
 
-Factory.define :seller do |s|
+Factory.define :ebayer do |s|
   s.sequence(:name) {|n| "Seller #{n}"}
-end
-
-Factory.define :buyer do |b|
-  b.sequence(:name) {|n| "Buyer #{n}"}
 end

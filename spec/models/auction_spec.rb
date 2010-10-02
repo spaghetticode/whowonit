@@ -42,13 +42,19 @@ describe Auction do
     end
     
     it 'buyer_name should return the buyer name if available' do
-      @auction.buyer = buyer = Factory(:buyer)
+      @auction.buyer = buyer = Factory(:ebayer)
       @auction.buyer_name.should == buyer.name
     end
     
     it 'got_buyer? should be true when buyer has just been added' do
-      @auction.buyer = Factory(:buyer)
+      @auction.buyer = Factory(:ebayer)
       @auction.got_buyer?.should be_true
+    end
+    
+    it 'set_buyer should create an ebayer with given name, if it doesnt exist yet' do
+      lambda do
+        @auction.set_buyer('superfiko')
+      end.should change(Ebayer, :count).by(1)
     end
     
     context 'when auction ended decently' do
@@ -65,14 +71,14 @@ describe Auction do
         context 'when buyer info is added' do
           it 'should deliver an informative email' do
             lambda do
-              @auction.update_attribute(:buyer, Factory(:buyer))
+              @auction.update_attribute(:buyer, Factory(:ebayer))
             end.should change(ActionMailer::Base.deliveries, :size).by(1)
           end
           
           it 'should not deliver informative email if buyer is changed' do
-            @auction.update_attribute(:buyer, Factory(:buyer))
+            @auction.update_attribute(:buyer, Factory(:ebayer))
             lambda do
-              @auction.update_attribute(:buyer, Factory(:buyer))
+              @auction.update_attribute(:buyer, Factory(:ebayer))
             end.should_not change(ActionMailer::Base.deliveries, :size)
           end
         end
@@ -81,7 +87,7 @@ describe Auction do
       context 'when auction has no associated users' do
         it 'should deliver no email when buyer info is added' do
           lambda do
-            @auction.update_attribute(:buyer, Factory(:buyer))
+            @auction.update_attribute(:buyer, Factory(:ebayer))
           end.should_not change(ActionMailer::Base.deliveries, :size)
         end
       end
@@ -97,7 +103,7 @@ describe Auction do
       it 'it should never deliver email' do
         @auction.users << Factory(:user)
         lambda do
-          @auction.update_attribute(:buyer, Factory(:buyer))
+          @auction.update_attribute(:buyer, Factory(:ebayer))
         end.should_not change(ActionMailer::Base.deliveries, :size)
       end
     end
@@ -106,7 +112,7 @@ describe Auction do
       it 'should never deliver email' do
         @auction.users << Factory(:user)
         lambda do
-          @auction.update_attribute(:buyer, Factory(:buyer))
+          @auction.update_attribute(:buyer, Factory(:ebayer))
         end.should_not change(ActionMailer::Base.deliveries, :size)
       end
     end
@@ -128,7 +134,7 @@ describe Auction do
     context 'PENDING SCOPE' do
       before do
         @unpending = Auction.last
-        @unpending.update_attribute(:buyer, Factory(:buyer))
+        @unpending.update_attribute(:buyer, Factory(:ebayer))
       end
     
       it { Auction.pending.should_not include(@unpending) }
