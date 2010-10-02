@@ -33,6 +33,16 @@ describe Auction do
     
     it { @auction.seller.should_not be_nil }
     
+    it 'should be closed if ended recently' do
+      @auction.end_time = 1.day.ago
+      @auction.should be_closed
+    end
+    
+    it 'should not be visible if ended more than 90 days go' do
+      @auction.end_time = 91.days.ago
+      @auction.should_not be_visible
+    end
+    
     it 'seller_name should return the seller name' do
       @auction.seller_name.should == @auction.seller.name
     end
@@ -51,69 +61,21 @@ describe Auction do
       @auction.got_buyer?.should be_true
     end
     
-    it 'set_buyer should create an ebayer with given name, if it doesnt exist yet' do
-      lambda do
-        @auction.set_buyer('superfiko')
-      end.should change(Ebayer, :count).by(1)
-    end
-    
-    context 'when auction ended decently' do
-      before { @auction.update_attribute(:end_time, 1.hour.ago) }
-      
-      it { @auction.should be_closed }
-      
-      context 'when auction has at least one associated user' do
-        before do
-          @user = Factory(:user)
-          @auction.users << @user
-        end
-        
-        context 'when buyer info is added' do
-          it 'should deliver an informative email' do
-            lambda do
-              @auction.update_attribute(:buyer, Factory(:ebayer))
-            end.should change(ActionMailer::Base.deliveries, :size).by(1)
-          end
-          
-          it 'should not deliver informative email if buyer is changed' do
-            @auction.update_attribute(:buyer, Factory(:ebayer))
-            lambda do
-              @auction.update_attribute(:buyer, Factory(:ebayer))
-            end.should_not change(ActionMailer::Base.deliveries, :size)
-          end
-        end
+    context 'SET_BUYER' do
+      before do
+        @auction.should_receive(:scrape_buyer_name).and_return('Bubba')
       end
       
-      context 'when auction has no associated users' do
-        it 'should deliver no email when buyer info is added' do
-          lambda do
-            @auction.update_attribute(:buyer, Factory(:ebayer))
-          end.should_not change(ActionMailer::Base.deliveries, :size)
-        end
-      end
-    end
-    
-    context 'when auction ended more than 90 days ago' do
-      before { @auction.end_time = 91.days.ago }
-      
-      it 'should not be visible' do
-        @auction.should_not be_visible
+      it 'should associate existing ebayer' do
+        ebayer = Factory(:ebayer, :name => 'Bubba')
+        @auction.set_buyer
+        @auction.buyer.should == ebayer
       end
       
-      it 'it should never deliver email' do
-        @auction.users << Factory(:user)
+      it 'should create the ebayer when necessary' do
         lambda do
-          @auction.update_attribute(:buyer, Factory(:ebayer))
-        end.should_not change(ActionMailer::Base.deliveries, :size)
-      end
-    end
-    
-    context 'when auction is not closed' do
-      it 'should never deliver email' do
-        @auction.users << Factory(:user)
-        lambda do
-          @auction.update_attribute(:buyer, Factory(:ebayer))
-        end.should_not change(ActionMailer::Base.deliveries, :size)
+          @auction.set_buyer
+        end.should change(Ebayer, :count).by(1)
       end
     end
   end
@@ -149,6 +111,23 @@ describe Auction do
     
       it { Auction.closed.should include(@closed) }
       it { Auction.closed.size.should == 1 }
+    end
+    
+    context 'closed.visible.pending' do
+      before do
+        @open = Factory(:auction)
+        @pending =   Factory(:auction, :end_time => 1.day.ago)
+        @invisible = Factory(:auction, :end_time => 91.days.ago)
+        @unpending = Factory(:auction, :end_time => 1.day.ago, :buyer => Factory(:ebayer))
+      end
+      
+      it 'should include @pending' do
+        Auction.closed.visible.pending.should include(@pending)
+      end
+      
+      it 'should return only 1 auction' do
+        Auction.closed.visible.pending.count.should == 1
+      end
     end
   end
 end

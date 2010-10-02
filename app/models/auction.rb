@@ -31,17 +31,17 @@ class Auction < ActiveRecord::Base
   def got_buyer?
     buyer and buyer_id_changed? and buyer_id_was.nil?
   end
-
-  def find_buyer
-    response = Nokogiri.HTML(open(seller.feedback_url))
-    feedback = response.css('.bot td:nth-child(2)').find{|t| t.text =~ /#{item_id}/}
-    if feedback
-      name = feedback.parent.previous_sibling.children[2].children.css(".mbg").children.css("a").first[:title].match(/Member id (\w+)/)[1]
-      set_buyer(name)
-    end
+  
+  def set_buyer
+    name = scrape_buyer_name
+    update_attribute(:buyer, Ebayer.find_or_create_by_name(name)) if name
   end
   
-  def set_buyer(name)
-    update_attribute :buyer, Ebayer.find_or_create_by_name(name)
+  private
+  
+  def scrape_buyer_name
+    html = Nokogiri.HTML(seller.feedback_html)
+    feedback = html.css('.bot td:nth-child(2)').find{|t| t.text =~ /#{item_id}/}
+    feedback && feedback.parent.previous_sibling.children[2].children.css('.mbg').children.css('a').first[:title].match(/Member id (\w+)/)[1]
   end
 end
