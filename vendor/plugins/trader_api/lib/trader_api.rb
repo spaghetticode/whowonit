@@ -80,7 +80,6 @@ module TraderApi
     
     def initialize(request)
       @request = request
-      debugger
       @xml_response = Nokogiri.XML(http_post).remove_namespaces!
       check_for_errors
     end
