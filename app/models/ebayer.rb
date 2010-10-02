@@ -8,4 +8,8 @@ class Ebayer < ActiveRecord::Base
   def profile_url
     [PROFILE_URL, name].join
   end
+  
+  def feedback_url
+    "http://feedback.ebay.com/ws/eBayISAPI.dll?ViewFeedback2&userid=#{name}&items=200&ftab=FeedbackAsSeller&interval=30"
+  end
 end

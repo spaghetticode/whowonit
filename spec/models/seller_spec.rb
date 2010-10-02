@@ -17,5 +17,10 @@ describe Seller do
       invalid = Factory.build(:seller, :name => @seller.name)
       invalid.should have(1).error_on(:name)
     end
+    
+    it 'feedback_url should include expected string' do
+      expected = "http://feedback.ebay.com/ws/eBayISAPI.dll?"
+      @seller.feedback_url.should include(expected)
+    end
   end
 end
