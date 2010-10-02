@@ -1,0 +1,3 @@
+sqlite3:
+  adapter: sqlite3
+  database: vendor/plugins/trader_api/test/trader_api.sqlite3

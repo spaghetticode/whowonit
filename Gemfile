@@ -9,9 +9,11 @@ gem 'haml-rails'
 gem 'jquery-rails'
 gem 'hpricot'
 gem 'ruby_parser'
-gem 'email_spec'
+gem 'xml-simple'
+
 
 group :test do
+  gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'

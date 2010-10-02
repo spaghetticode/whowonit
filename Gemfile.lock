@@ -144,6 +144,7 @@ GEM
     tzinfo (0.3.23)
     warden (0.10.7)
       rack (>= 1.0.0)
+    xml-simple (1.0.12)
 
 PLATFORMS
   ruby
@@ -168,3 +169,4 @@ DEPENDENCIES
   ruby_parser
   spork
   sqlite3-ruby
+  xml-simple

@@ -1,0 +1,13 @@
+TraderApi
+=========
+
+This plugin is work in progress.
+
+
+Example
+=======
+
+item = TraderApi::GetItem.new('1231231')
+puts item.url
+
+Copyright (c) 2010 Andrea Longhi, released under the MIT license
