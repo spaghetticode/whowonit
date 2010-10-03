@@ -1,6 +1,6 @@
 #add_auction
   %h2 Add Auction
-  = form_for @auction do |f|
+  = form_for @auction ||= Auction.new do |f|
     -if @auction.errors.any?
       #errorExplanation
         %p Item ID is not valid, or not available anymore.

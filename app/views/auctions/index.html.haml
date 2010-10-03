@@ -1,6 +1,8 @@
-%h2 Auctions List
+= render 'form'
 
-%table
+%h2 Tracked Auctions
+
+%table.auctions{:cellpadding => 0, :cellspacing => 0}
   %tr
     %th{:colspan => 2} Auction
     %th End time
@@ -14,8 +16,4 @@
       %td= auction.end_time
       %td= profile_for(auction.seller)
       %td= profile_for(auction.buyer)
-      %td= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
-
-%br
-
-= link_to 'Add auction', root_path
+      %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete

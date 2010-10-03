@@ -1,0 +1,100 @@
+body
+  margin: 0
+  padding: 0
+  font-family: helvetica, arial, verdana, sans-serif
+  font-size: 0.85em
+  
+.silver
+  color: silver
+  
+div.field_with_errors
+  display: inline
+
+tr.auction img
+  height: 50px
+
+tr.auction td
+  padding: 5px 15px
+
+div#header
+  overflow: auto
+  background: black
+  padding: 10px 40px
+  height: 100px
+  color: white
+  div#left-header
+    float: left
+    p
+      margin: 0
+      text-align: center
+    h1
+      margin: 0
+      background: url(/images/logo.jpg) no-repeat scroll 0 10px
+      a
+        display: block
+        height: 80px
+        width: 290px
+        text-indent: -9999px
+    
+  a 
+    color: #fafafa
+    text-transform: small-caps
+    text-decoration: none
+  a:hover
+    text-decoration: underline
+  div#top-nav
+    float: right
+    ul
+      margin: 0
+      padding: 0
+      list-style: none
+      li
+        display: inline
+    div#user-nav
+      margin-top: 75px
+      overflow: auto
+      height: 25px
+      p
+        float: left
+        margin: 0
+        padding-right: 25px
+        font-size: 0.9em
+      ul
+        float: right
+        li 
+          margin: 0 5px
+    div#site-nav
+      float: right
+      
+div#flash
+  height: 40px
+  p
+    line-height: 40px
+    margin: 0px
+    text-align: center
+  p.alert
+    color: maroon
+    background: #fe8d8d
+  p.notice
+    color: #006600
+    background: #99ff99
+
+div#content
+  margin: 20px 25px
+  
+td.red input
+  color: maroon
+input#auction_submit
+  color: green
+  
+div#errorExplanation
+  color: #e33
+
+table.auctions
+  tr:nth-of-type(2n)
+    background: #eee
+  th
+    padding: 10px 0
+
+div#add_auction
+  margin-bottom: 40px

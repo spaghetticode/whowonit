@@ -1,10 +1,99 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: helvetica, arial, verdana, sans-serif;
+  font-size: 0.85em; }
+
+.silver {
+  color: silver; }
+
 div.field_with_errors {
-	display: inline;
-}
+  display: inline; }
 
 tr.auction img {
-	height: 50px;
-}
+  height: 50px; }
+
 tr.auction td {
-	padding: 5px 15px;
-}
+  padding: 5px 15px; }
+
+div#header {
+  overflow: auto;
+  background: black;
+  padding: 10px 40px;
+  height: 100px;
+  color: white; }
+  div#header div#left-header {
+    float: left; }
+    div#header div#left-header p {
+      margin: 0;
+      text-align: center; }
+    div#header div#left-header h1 {
+      margin: 0;
+      background: url(/images/logo.jpg) no-repeat scroll 0 10px; }
+      div#header div#left-header h1 a {
+        display: block;
+        height: 80px;
+        width: 290px;
+        text-indent: -9999px; }
+  div#header a {
+    color: #fafafa;
+    text-transform: small-caps;
+    text-decoration: none; }
+  div#header a:hover {
+    text-decoration: underline; }
+  div#header div#top-nav {
+    float: right; }
+    div#header div#top-nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none; }
+      div#header div#top-nav ul li {
+        display: inline; }
+    div#header div#top-nav div#user-nav {
+      margin-top: 75px;
+      overflow: auto;
+      height: 25px; }
+      div#header div#top-nav div#user-nav p {
+        float: left;
+        margin: 0;
+        padding-right: 25px;
+        font-size: 0.9em; }
+      div#header div#top-nav div#user-nav ul {
+        float: right; }
+        div#header div#top-nav div#user-nav ul li {
+          margin: 0 5px; }
+    div#header div#top-nav div#site-nav {
+      float: right; }
+
+div#flash {
+  height: 40px; }
+  div#flash p {
+    line-height: 40px;
+    margin: 0px;
+    text-align: center; }
+  div#flash p.alert {
+    color: maroon;
+    background: #fe8d8d; }
+  div#flash p.notice {
+    color: #006600;
+    background: #99ff99; }
+
+div#content {
+  margin: 20px 25px; }
+
+td.red input {
+  color: maroon; }
+
+input#auction_submit {
+  color: green; }
+
+div#errorExplanation {
+  color: #ee3333; }
+
+table.auctions tr:nth-of-type(2n) {
+  background: #eeeeee; }
+table.auctions th {
+  padding: 10px 0; }
+
+div#add_auction {
+  margin-bottom: 40px; }
