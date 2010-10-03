@@ -29,7 +29,7 @@ class Auction < ActiveRecord::Base
     %w[title url end_time].each do |field|
       send "#{field}=", item.send(field)
     end
-    seller = Ebayer.find_or_create_by_name(item.seller_ebay_id)
+    self.seller = Ebayer.find_or_create_by_name(item.seller_ebay_id)
     rescue TraderApi::RequestError # TODO should we do something? Should we keep the error rescue more general?
   end
   

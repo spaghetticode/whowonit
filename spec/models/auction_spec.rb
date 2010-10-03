@@ -84,13 +84,14 @@ describe Auction do
         @mock_ebay_item = mock(
           :title => 'Wow r@are l@@k',
           :end_time => 1.day.from_now,
-          :seller_ebay_id => @auction.seller_name,
+          :seller_ebay_id => 'boobs',
           :url => "http://ebay.com/item#{@auction.item_id}"
         )
         TraderApi::GetItem.stub!(:new => @mock_ebay_item)
       end
     
       it 'should assign fields as expected' do
+        @auction.seller = nil
         @auction.set_external_attributes
         %w[url title end_time].each do |field|
           @auction.send(field).should == @mock_ebay_item.send(field)
