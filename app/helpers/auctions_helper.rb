@@ -7,4 +7,8 @@ module AuctionsHelper
     return '-' unless ebayer
     link_to ebayer.name, ebayer.profile_url
   end
+  
+  def color_for(auction)
+    auction.closed? ? 'black' : 'green'
+  end
 end

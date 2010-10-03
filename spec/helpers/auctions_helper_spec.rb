@@ -25,4 +25,17 @@ describe AuctionsHelper do
       helper.profile_for(@ebayer).should include(@ebayer.profile_url)
     end
   end
+  
+  describe 'color_for' do
+    before { @auction = Factory.build(:auction) }
+    
+    it 'should return black if auction is closed' do
+      @auction.end_time = 1.week.ago
+      helper.color_for(@auction).should == 'black'
+    end
+    
+    it 'should return green if auction is not closed' do
+      helper.color_for(@auction).should == 'green'
+    end
+  end
 end
