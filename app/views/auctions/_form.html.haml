@@ -1,15 +1,10 @@
-= form_for @auction do |f|
-  -if @auction.errors.any?
-    #errorExplanation
-      %h2= "#{pluralize(@auction.errors.count, "error")} prohibited this auction from being saved:"
-      %ul
-        - @auction.errors.full_messages.each do |msg|
-          %li= msg
-  %p
-    = f.label :url
-    = f.text_field :url
-    = f.text_field :item_id, :value => "1234#{rand(1000).to_i}"
-    = f.text_field :title, :value => 'a title'
-    = f.text_field :end_time, :value => 1.day.from_now
-    = f.text_field :seller_id, :value => Ebayer.first.try(:id)
-    = f.submit 'Save'
+#add_auction
+  %h2 Add Auction
+  = form_for @auction do |f|
+    -if @auction.errors.any?
+      #errorExplanation
+        %p Item ID is not valid, or not available anymore.
+    %p
+      = f.label :item_id, 'Item ID'
+      = f.text_field :item_id
+      = f.submit 'Add'
