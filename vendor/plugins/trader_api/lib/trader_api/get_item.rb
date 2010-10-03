@@ -40,7 +40,9 @@ module TraderApi
     end
   
     def url
-      listing_details.at('ViewItemURL').text.gsub('cgi.ebay.com', "cgi.ebay.#{country.downcase}")
+      url = listing_details.at('ViewItemURL').text
+      return url if country == 'US'
+      url.gsub('cgi.ebay.com', "cgi.ebay.#{country.downcase}")
     end
   
     def gallery_url
