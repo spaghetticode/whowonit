@@ -8,7 +8,7 @@ class Auction < ActiveRecord::Base
   validates_uniqueness_of :url, :item_id
   
   VISIBILITY_DAYS = 90
-  scope :ordered, order('end_time')
+  scope :ordered, order('end_time DESC')
   scope :pending, where(:buyer_id => nil)
   scope :closed,  lambda { where('end_time < ?', Time.now) }
   scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.send(:days).ago) }
