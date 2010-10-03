@@ -2,13 +2,14 @@
 
 %table
   %tr
-    %th Auction
+    %th{:colspan => 2} Auction
     %th End time
     %th Seller
     %th Buyer
 
   - @auctions.each do |auction|
     %tr.auction{:id => "id-#{auction.id}"}
+      %td= gallery_image_tag auction
       %td= link_to auction.title, auction.url
       %td= auction.end_time
       %td= auction.seller_name

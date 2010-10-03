@@ -10,7 +10,8 @@ class AuctionsController < ApplicationController
   end
 
   def create
-    @auction = Auction.new(params[:auction].merge(:user_ids => [current_user.id]))
+    #@auction = Auction.new(params[:auction].merge(:user_ids => [current_user.id]))
+    @auction = Auction.from_params(params[:auction], current_user.id)
     if @auction.save
       redirect_to auctions_path, :notice => 'Auction was successfully added.'
     else
