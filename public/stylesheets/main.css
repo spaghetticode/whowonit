@@ -1,3 +1,10 @@
 div.field_with_errors {
 	display: inline;
 }
+
+tr.auction img {
+	height: 50px;
+}
+tr.auction td {
+	padding: 5px 15px;
+}

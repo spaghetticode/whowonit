@@ -12,8 +12,8 @@
       %td= gallery_image_tag auction
       %td= link_to auction.title, auction.url
       %td= auction.end_time
-      %td= auction.seller_name
-      %td= auction.buyer_name
+      %td= profile_for(auction.seller)
+      %td= profile_for(auction.buyer)
       %td= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
 
 %br
