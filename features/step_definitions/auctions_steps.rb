@@ -43,3 +43,11 @@ When /^I remove the last auction from my list$/ do
   When 'I go to the auctions list page'
   And  %(I press "remove" within the auction row with id #{@destroyed.id})
 end
+
+Then /^I should (not )?see the add auction form$/ do |neg|
+  if neg.blank?
+    And %(I should see "Add Auction" within the add auction form)
+  else
+    And 'I should not see "Add Auction"'
+  end
+end

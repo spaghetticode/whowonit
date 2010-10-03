@@ -3,6 +3,10 @@ Feature: Manage authentications
   As an application user
   I want to manange my account
   
+  Scenario: No Add Auction form unless logged in
+    When I go to the homepage
+    Then I should not see the add auction form
+    
   Scenario: Successful Authentication
     Given I am a registered user
     When  I go to the login page
