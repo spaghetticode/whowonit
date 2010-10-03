@@ -11,5 +11,16 @@ require 'spec_helper'
 #   end
 # end
 describe AuctionsHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'gallery_image_tag' do
+    before { @auction = Factory.stub(:auction) }
+    
+    it 'should return an image tag' do
+      helper.gallery_image_tag(@auction).should =~ %r[<img.+/>]
+    end
+    
+    it 'should include expected string' do
+      expected = "http://thumbs3.ebaystatic.com/pict/#{@auction.item_id}.jpg"
+      helper.gallery_image_tag(@auction).should include(expected)
+    end
+  end
 end
