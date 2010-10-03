@@ -8,11 +8,15 @@ describe AuctionsController do
   
   context 'when not logged in' do
     it_should_redirect_for(
-      :index => :get,
       :new => :get,
       :create => :post,
       :destroy => :delete
     )
+    
+    it 'should get index' do
+      get :index
+      response.should be_success
+    end
   end
   
   context 'when logged in' do

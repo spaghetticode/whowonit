@@ -1,8 +1,12 @@
 class AuctionsController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => :index
 
   def index
-    @auctions = current_user.visible_auctions.ordered
+    if current_user
+      @auctions = current_user.visible_auctions.ordered
+    else
+      render :action => 'home'
+    end
   end
 
   def new
