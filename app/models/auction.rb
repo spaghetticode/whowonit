@@ -8,9 +8,30 @@ class Auction < ActiveRecord::Base
   validates_uniqueness_of :url, :item_id
   
   VISIBILITY_DAYS = 90
+  scope :ordered, order('end_time')
   scope :pending, where(:buyer_id => nil)
   scope :closed,  lambda { where('end_time < ?', Time.now) }
   scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.send(:days).ago) }
+  
+  def self.from_params(params, current_user_id)
+    auction = Auction.find_or_initialize_by_item_id(params[:item_id])
+    if auction.new_record?
+      auction.set_external_attributes
+      auction.user_ids = [current_user_id]
+    else
+      auction.user_ids << current_user_id
+    end
+    auction
+  end
+  
+  def set_external_attributes
+    item = TraderApi::GetItem.new(item_id)
+    %w[title url end_time].each do |field|
+      send "#{field}=", item.send(field)
+    end
+    seller = Ebayer.find_or_create_by_name(item.seller_ebay_id)
+    rescue TraderApi::RequestError # TODO should we do something? Should we keep the error rescue more general?
+  end
   
   def seller_name
     seller.name

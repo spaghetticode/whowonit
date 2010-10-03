@@ -23,9 +23,9 @@ describe AuctionsController do
     
     describe "GET index" do
       it "assigns all visible user auctions as @auctions" do
-        controller.current_user.should_receive(:visible_auctions).and_return([mock_auction])
+        auction = Factory(:auction, :user_ids => [@user])
         get :index
-        assigns(:auctions).should == [mock_auction]
+        assigns(:auctions).should == [auction]
       end
     end
 

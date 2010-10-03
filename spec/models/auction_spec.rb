@@ -78,6 +78,26 @@ describe Auction do
         end.should change(Ebayer, :count).by(1)
       end
     end
+    
+    context 'SET_EXTERNAL_ATTRIBUTES' do
+      before do
+        @mock_ebay_item = mock(
+          :title => 'Wow r@are l@@k',
+          :end_time => 1.day.from_now,
+          :seller_ebay_id => @auction.seller_name,
+          :url => "http://ebay.com/item#{@auction.item_id}"
+        )
+        TraderApi::GetItem.stub!(:new => @mock_ebay_item)
+      end
+    
+      it 'should assign fields as expected' do
+        @auction.set_external_attributes
+        %w[url title end_time].each do |field|
+          @auction.send(field).should == @mock_ebay_item.send(field)
+        end
+        @auction.seller_name.should == @mock_ebay_item.seller_ebay_id
+      end
+    end
   end
   
   context 'scopes' do
@@ -113,7 +133,7 @@ describe Auction do
       it { Auction.closed.size.should == 1 }
     end
     
-    context 'closed.visible.pending' do
+    context 'CLOSED.VISIBLE.PENDING' do
       before do
         @open = Factory(:auction)
         @pending =   Factory(:auction, :end_time => 1.day.ago)
@@ -128,6 +148,35 @@ describe Auction do
       it 'should return only 1 auction' do
         Auction.closed.visible.pending.count.should == 1
       end
+    end
+  end
+  
+  describe 'SELF.FROM_PARAMS' do
+    before do
+      @params = {:item_id => '123123'}
+      @seller_name = 'boobs'
+      @user = Factory(:user)
+      @mock_ebay_item = mock(
+        :item_id => @params[:item_id],
+        :title => 'Wow r@are l@@k',
+        :end_time => 1.day.from_now,
+        :seller_ebay_id => @seller_name,
+        :url => "http://ebay.com/item#{@params[:item_id]}"
+      )
+      TraderApi::GetItem.stub!(:new => @mock_ebay_item)
+    end
+    
+    it 'should return a new instance' do
+      Auction.from_params(@params, @user.id).should be_new_record
+    end
+    
+    it 'should return existing instance' do
+      auction = Factory(
+        :auction, 
+        :item_id => @params[:item_id], 
+        :seller => Factory(:ebayer, :name => @seller_name)
+      )
+      Auction.from_params(@params, @user.id).should == auction
     end
   end
 end

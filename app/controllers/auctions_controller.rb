@@ -2,7 +2,7 @@ class AuctionsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @auctions = current_user.visible_auctions
+    @auctions = current_user.visible_auctions.ordered
   end
 
   def new
