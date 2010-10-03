@@ -3,7 +3,7 @@ class Ebayer < ActiveRecord::Base
   
   validates :name, :presence => true, :uniqueness => true
   
-  PROFILE_URL = 'http://myworld.ebay.it/'
+  PROFILE_URL = 'http://myworld.ebay.com/'
   
   def profile_url
     [PROFILE_URL, name].join

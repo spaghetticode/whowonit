@@ -17,7 +17,7 @@ describe Ebayer do
     end
     
     it 'profile_url should be as expected' do
-      @ebayer.profile_url.should == "http://myworld.ebay.it/#{@ebayer.name}"
+      @ebayer.profile_url.should == "http://myworld.ebay.com/#{@ebayer.name}"
     end
     
     it 'feedback_url should include expected string' do
