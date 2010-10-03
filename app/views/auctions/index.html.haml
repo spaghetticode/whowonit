@@ -11,7 +11,7 @@
 
   - @auctions.each do |auction|
     %tr.auction{:id => "id-#{auction.id}"}
-      %td= gallery_image_tag auction
+      %td.center= gallery_image_tag auction
       %td= link_to auction.title, auction.url
       %td{:class => color_for(auction)}= auction.end_time
       %td= profile_for(auction.seller)

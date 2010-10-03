@@ -4,11 +4,11 @@ body {
   font-family: helvetica, arial, verdana, sans-serif;
   font-size: 0.85em; }
 
-.silver {
-  color: silver; }
-
 .green {
   color: green; }
+
+.center {
+  text-align: center; }
 
 div.field_with_errors {
   display: inline; }
@@ -20,11 +20,11 @@ tr.auction td {
   padding: 5px 15px; }
 
 div#header {
+  color: #cccccc;
   overflow: auto;
   background: black;
   padding: 10px 40px;
-  height: 100px;
-  color: white; }
+  height: 100px; }
   div#header div#left-header {
     float: left; }
     div#header div#left-header p {
@@ -39,11 +39,10 @@ div#header {
         width: 290px;
         text-indent: -9999px; }
   div#header a {
-    color: #fafafa;
-    text-transform: small-caps;
-    text-decoration: none; }
+    color: white;
+    text-transform: uppercase; }
   div#header a:hover {
-    text-decoration: underline; }
+    text-decoration: none; }
   div#header div#top-nav {
     float: right; }
     div#header div#top-nav ul {
