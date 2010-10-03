@@ -7,6 +7,9 @@ body {
 .silver {
   color: silver; }
 
+.green {
+  color: green; }
+
 div.field_with_errors {
   display: inline; }
 
