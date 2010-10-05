@@ -8,21 +8,40 @@ body {
 a:hover {
   text-decoration: none; }
 
-#about {
+#signup, #about {
   float: left;
+  font-size: 1.3em; }
+  #signup p, #about p {
+    margin: 25px 0;
+    color: #444444;
+    line-height: 30px;
+    word-spacing: 0.1em; }
+
+#about {
   width: 45%;
-  font-size: 1.3em;
-  margin: 0 30px;
-  color: #555555;
-  line-height: 28px; }
+  margin: 0 30px; }
+
+#signup {
+  margin-left: 100px; }
+  #signup form {
+    font-size: 0.9em;
+    color: #222222;
+    background: #f0f0f7;
+    padding: 0 20px;
+    border: 2px solid silver;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; }
+    #signup form p {
+      margin: 10px 0; }
 
 form#new_user input, form#user_new input, form#new_auction input, form#user_edit input {
   border: 1px solid #aaaaaa;
   background: -moz-linear-gradient(0% 50% 270deg, white, #dddddd);
   background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#dddddd));
-  -moz-border-radius: 7px;
-  -webkit-border-radius: 7px;
-  border-radius: 10px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
   padding: 8px;
   font-size: 0.9em; }
 form#new_user input#user_submit, form#new_user input#auction_submit, form#user_new input#user_submit, form#user_new input#auction_submit, form#new_auction input#user_submit, form#new_auction input#auction_submit, form#user_edit input#user_submit, form#user_edit input#auction_submit {
@@ -33,17 +52,15 @@ form#new_user #user_submit:hover, form#new_user #auction_submit:hover, form#user
   color: #006600;
   background: #dddddd; }
 
-#signup {
-  float: left;
-  font-size: 1.3em;
-  margin-left: 100px;
-  color: #222222; }
-
 .green {
   color: green; }
 
 .center {
   text-align: center; }
+
+.big {
+  font-size: 1.4em;
+  color: #666666; }
 
 div.field_with_errors {
   display: inline; }

@@ -7,24 +7,43 @@ body
 
 a:hover
   text-decoration: none
-  
-#about
-  float: left
-  width: 45%
-  font-size: 1.3em
-  margin: 0 30px
-  color: #555
-  line-height: 28px
 
+#signup, #about
+  float: left
+  font-size: 1.3em
+  p
+    margin: 25px 0
+    color: #444
+    line-height: 30px
+    word-spacing: 0.1em
+    
+#about
+  width: 45%
+  margin: 0 30px
+
+#signup
+  margin-left: 100px
+  form
+    p
+      margin: 10px 0
+    font-size: 0.9em
+    color: #222
+    background: #f0f0f7
+    padding: 0 20px
+    border: 2px solid silver
+    -moz-border-radius: 10px
+    -webkit-border-radius: 10px
+    border-radius: 10px
+        
 form#new_user, form#user_new, form#new_auction, form#user_edit
   input
     border: 1px solid #aaa
     background: -moz-linear-gradient(0% 50% 270deg, white, #ddd)
     background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#ddd))
     
-    -moz-border-radius: 7px
-    -webkit-border-radius: 7px
-    border-radius: 10px
+    -moz-border-radius: 6px
+    -webkit-border-radius: 6px
+    border-radius: 6px
     padding: 8px
     font-size: 0.9em
   input#user_submit, input#auction_submit
@@ -34,18 +53,16 @@ form#new_user, form#user_new, form#new_auction, form#user_edit
     border: 1px solid gray
     color: #060
     background: #ddd
-    
-#signup
-  float: left
-  font-size: 1.3em
-  margin-left: 100px
-  color: #222    
 
 .green
   color: green
 
 .center
   text-align: center
+
+.big
+  font-size: 1.4em
+  color: #666
   
 div.field_with_errors
   display: inline

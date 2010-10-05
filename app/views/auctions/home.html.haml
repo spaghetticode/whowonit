@@ -1,6 +1,13 @@
 #about
-  %p It's been a while since ebay changed its privacy policy: now the winner of an auction remains undisclosed to all other ebayers but the seller. But there is still a chance to find out who won that auction: sooner or later feedback should be left, and it will include the buyer ebay id. 
-  %p Sign up right now to start tracking auctions, and as soon as an auction gets its feedback from the buyer we will notify you via email with the buyer ebay id. <br />Tracked auctions will stay visible on this website for 90 days after auction close, in accordance with ebay policy.
+  %p
+    %span.big It's been a while
+    since <strong>ebay</strong> changed its privacy policy: now the winner of an auction remains undisclosed to all other ebayers but the seller.
+  %p But there is still a chance to find out who won that auction: sooner or later feedback should be left, and it will include the buyer ebay id. 
+  %p 
+    %span.big Sign up
+    right now to start tracking auctions, and as soon as an auction gets its feedback from the buyer we will notify you via email with the buyer ebay id.
+  %p Tracked auctions will stay visible on this website for 90 days after auction close, in accordance with ebay policy.
 #signup
+  %p Register here for free:
   = form_for @user, :url => user_registration_path do |f|
     = render :partial => 'devise/registrations/signup_fields', :locals => {:f => f}
