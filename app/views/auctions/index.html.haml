@@ -3,17 +3,18 @@
 %h2 Tracked Auctions
 
 %table.auctions{:cellpadding => 0, :cellspacing => 0}
-  %tr
-    %th{:colspan => 2} Auction
-    %th End time
-    %th Seller
-    %th Buyer
-
-  - @auctions.each do |auction|
-    %tr.auction{:id => "id-#{auction.id}"}
-      %td.center= gallery_image_tag auction
-      %td= link_to auction.title, auction.url
-      %td{:class => color_for(auction)}= auction.end_time.to_s(:auction_end)
-      %td= profile_for(auction.seller)
-      %td= profile_for(auction.buyer)
-      %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
+  %thead
+    %tr
+      %th{:colspan => 2} Auction
+      %th End time
+      %th Seller
+      %th Buyer
+  %tbody
+    - @auctions.each do |auction|
+      %tr.auction{:id => "id-#{auction.id}"}
+        %td.center= gallery_image_tag auction
+        %td= link_to auction.title, auction.url
+        %td{:class => color_for(auction)}= auction.end_time.to_s(:auction_end)
+        %td= profile_for(auction.seller)
+        %td= profile_for(auction.buyer)
+        %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete

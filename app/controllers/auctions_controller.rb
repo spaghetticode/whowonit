@@ -15,18 +15,24 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.from_params(params[:auction], current_user.id)
-    if @auction.save
-      redirect_to auctions_path, :notice => 'Auction was successfully added.'
-    else
-      render :action => "new"
+    respond_to do |f|
+      if @auction.save
+        flash[:notice] = 'Auction was successfully added to your list.'
+        f.html { redirect_to auctions_path }
+        f.js
+      else
+        f.html { render :action => "new" }
+        f.js
+      end
     end
   end
 
   def destroy
     @auction = Auction.find(params[:id])
     @auction.destroyable? ? @auction.destroy : current_user.auctions.delete(@auction)
+    flash[:notice] = 'Auction was successfully removed from your list.'
     respond_to do |f|
-      f.html { redirect_to auctions_path, :notice => 'Auction was successfully removed.' }
+      f.html { redirect_to auctions_path }
       f.js # destroy.erb.js
     end
   end
