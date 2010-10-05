@@ -13,5 +13,9 @@
     = f.label :password_confirmation
     %br/
     = f.password_field :password_confirmation
+  %p
+    = f.label :time_zone
+    %br/
+    = f.time_zone_select :time_zone
   %p= f.submit "Sign up"
 = render :partial => "devise/shared/links"

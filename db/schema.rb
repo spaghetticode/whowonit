@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100930093851) do
+ActiveRecord::Schema.define(:version => 20101005094702) do
 
   create_table "auctions", :force => true do |t|
     t.string   "url",        :null => false
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20100930093851) do
     t.string   "authentication_token"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "time_zone"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

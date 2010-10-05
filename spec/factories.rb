@@ -3,6 +3,7 @@ Factory.define :user do |u|
   u.password 'secret'
   u.password_confirmation 'secret'
   u.confirmed_at Time.now
+  u.time_zone 'Rome'
 end
 
 Factory.define :auction do |a|

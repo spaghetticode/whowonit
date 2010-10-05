@@ -5,6 +5,7 @@ describe User do
     it { should_not be_valid }
     it { should have(1).error_on(:email) }
     it { should have(1).error_on(:password) }
+    it { should have(1).error_on(:time_zone) }
   end
   
   context 'a factory user' do
