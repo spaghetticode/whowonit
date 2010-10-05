@@ -1,0 +1,17 @@
+%p
+  = f.label :email
+  %br/
+  = f.text_field :email, :type => 'email'
+%p
+  = f.label :password
+  %br/
+  = f.password_field :password
+%p
+  = f.label :password_confirmation
+  %br/
+  = f.password_field :password_confirmation
+%p
+  = f.label :time_zone
+  %br/
+  = f.time_zone_select :time_zone
+%p= f.submit "Sign up"

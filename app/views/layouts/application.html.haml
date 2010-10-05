@@ -19,7 +19,6 @@
               %li= link_to 'Sign out', destroy_user_session_path
             -else
               %li= link_to 'Sign in', new_user_session_path
-              %li= link_to 'Sign up', new_user_registration_path
           - if current_user
             %p== signed in as #{current_user.email}
     #flash
@@ -27,3 +26,5 @@
         %p{:class => type}= message
     #content
       = yield
+    #footer
+      %p.center== This app is © 2010 #{link_to 'Spaghetticode Productions', 'http://spaghetticode.it'}

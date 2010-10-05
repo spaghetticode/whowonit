@@ -3,7 +3,44 @@ body
   padding: 0
   font-family: helvetica, arial, verdana, sans-serif
   font-size: 0.85em
+  min-width: 1020px
+
+a:hover
+  text-decoration: none
   
+#about
+  float: left
+  width: 45%
+  font-size: 1.3em
+  margin: 0 30px
+  color: #555
+  line-height: 28px
+
+form#new_user, form#user_new, form#new_auction, form#user_edit
+  input
+    border: 1px solid #aaa
+    background: -moz-linear-gradient(0% 50% 270deg, white, #ddd)
+    background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#ddd))
+    
+    -moz-border-radius: 7px
+    -webkit-border-radius: 7px
+    border-radius: 10px
+    padding: 8px
+    font-size: 0.9em
+  input#user_submit, input#auction_submit
+    color: green
+    background: #eee
+  #user_submit:hover, #auction_submit:hover
+    border: 1px solid gray
+    color: #060
+    background: #ddd
+    
+#signup
+  float: left
+  font-size: 1.3em
+  margin-left: 100px
+  color: #222    
+
 .green
   color: green
 
@@ -42,8 +79,6 @@ div#header
   a 
     color: white
     text-transform: uppercase
-  a:hover
-    text-decoration: none
   div#top-nav
     float: right
     ul
@@ -81,20 +116,32 @@ div#flash
 
 div#content
   margin: 20px 25px
+  overflow: auto
   
 td.red input
   color: maroon
 input#auction_submit
   color: green
   
-div#errorExplanation
+div#errorExplanation, div#error_explanation li
   color: #e33
-
-table.auctions
-  tr:nth-of-type(2n)
-    background: #eee
+  
+table.auctions 
+  tbody
+    tr:nth-of-type(2n-1)
+      background: #eee
   th
     padding: 10px 0
 
 div#add_auction
   margin-bottom: 40px
+  
+div#footer
+  margin-top: 80px
+  color: #ccc
+  background: black
+  height: 60px
+  padding: 20px 40px
+  font-size: 0.9em
+  a 
+    color: white

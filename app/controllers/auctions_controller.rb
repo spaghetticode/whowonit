@@ -5,6 +5,7 @@ class AuctionsController < ApplicationController
     if current_user
       @auctions = current_user.visible_auctions.ordered
     else
+      @user = User.new
       render :action => 'home'
     end
   end

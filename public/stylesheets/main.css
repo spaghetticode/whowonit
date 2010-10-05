@@ -2,7 +2,42 @@ body {
   margin: 0;
   padding: 0;
   font-family: helvetica, arial, verdana, sans-serif;
-  font-size: 0.85em; }
+  font-size: 0.85em;
+  min-width: 1020px; }
+
+a:hover {
+  text-decoration: none; }
+
+#about {
+  float: left;
+  width: 45%;
+  font-size: 1.3em;
+  margin: 0 30px;
+  color: #555555;
+  line-height: 28px; }
+
+form#new_user input, form#user_new input, form#new_auction input, form#user_edit input {
+  border: 1px solid #aaaaaa;
+  background: -moz-linear-gradient(0% 50% 270deg, white, #dddddd);
+  background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#dddddd));
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  border-radius: 10px;
+  padding: 8px;
+  font-size: 0.9em; }
+form#new_user input#user_submit, form#new_user input#auction_submit, form#user_new input#user_submit, form#user_new input#auction_submit, form#new_auction input#user_submit, form#new_auction input#auction_submit, form#user_edit input#user_submit, form#user_edit input#auction_submit {
+  color: green;
+  background: #eeeeee; }
+form#new_user #user_submit:hover, form#new_user #auction_submit:hover, form#user_new #user_submit:hover, form#user_new #auction_submit:hover, form#new_auction #user_submit:hover, form#new_auction #auction_submit:hover, form#user_edit #user_submit:hover, form#user_edit #auction_submit:hover {
+  border: 1px solid gray;
+  color: #006600;
+  background: #dddddd; }
+
+#signup {
+  float: left;
+  font-size: 1.3em;
+  margin-left: 100px;
+  color: #222222; }
 
 .green {
   color: green; }
@@ -41,8 +76,6 @@ div#header {
   div#header a {
     color: white;
     text-transform: uppercase; }
-  div#header a:hover {
-    text-decoration: none; }
   div#header div#top-nav {
     float: right; }
     div#header div#top-nav ul {
@@ -79,7 +112,8 @@ div#flash {
     background: #99ff99; }
 
 div#content {
-  margin: 20px 25px; }
+  margin: 20px 25px;
+  overflow: auto; }
 
 td.red input {
   color: maroon; }
@@ -87,13 +121,23 @@ td.red input {
 input#auction_submit {
   color: green; }
 
-div#errorExplanation {
+div#errorExplanation, div#error_explanation li {
   color: #ee3333; }
 
-table.auctions tr:nth-of-type(2n) {
+table.auctions tbody tr:nth-of-type(2n-1) {
   background: #eeeeee; }
 table.auctions th {
   padding: 10px 0; }
 
 div#add_auction {
   margin-bottom: 40px; }
+
+div#footer {
+  margin-top: 80px;
+  color: #cccccc;
+  background: black;
+  height: 60px;
+  padding: 20px 40px;
+  font-size: 0.9em; }
+  div#footer a {
+    color: white; }
