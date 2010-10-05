@@ -22,8 +22,6 @@
               %li= link_to 'Sign up', new_user_registration_path
           - if current_user
             %p== signed in as #{current_user.email}
-        #site-nav
-          - # TODO remove if useless
     #flash
       - flash.each do |type, message|
         %p{:class => type}= message
