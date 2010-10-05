@@ -58,6 +58,10 @@ class Auction < ActiveRecord::Base
     update_attribute(:buyer, Ebayer.find_or_create_by_name(name)) if name
   end
   
+  def destroyable?
+    user_ids.size < 2
+  end
+  
   private
   
   def scrape_buyer_name

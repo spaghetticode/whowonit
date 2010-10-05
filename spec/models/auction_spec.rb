@@ -20,6 +20,13 @@ describe Auction do
     it { @auction.should be_visible }
     it { @auction.should_not be_closed }
     it { @auction.got_buyer?.should be_false }
+    it { @auction.should be_destroyable }
+    
+    it 'should not be destroyable when it has more than 1 user associated' do
+      user_ids = (0..2).to_a.map { Factory(:user).id }
+      @auction.update_attribute(:user_ids, user_ids)
+      @auction.should_not be_destroyable
+    end
     
     it 'url should be unique' do
       invalid = Factory.build(:auction, :url => @auction.url)
