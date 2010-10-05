@@ -1,0 +1,1 @@
+Time::DATE_FORMATS[:auction_end] = '%d %b, %H:%M'

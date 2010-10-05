@@ -13,7 +13,7 @@
     %tr.auction{:id => "id-#{auction.id}"}
       %td.center= gallery_image_tag auction
       %td= link_to auction.title, auction.url
-      %td{:class => color_for(auction)}= auction.end_time
+      %td{:class => color_for(auction)}= auction.end_time.to_s(:auction_end)
       %td= profile_for(auction.seller)
       %td= profile_for(auction.buyer)
       %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
