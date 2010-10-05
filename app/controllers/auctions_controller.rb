@@ -14,7 +14,6 @@ class AuctionsController < ApplicationController
   end
 
   def create
-    #@auction = Auction.new(params[:auction].merge(:user_ids => [current_user.id]))
     @auction = Auction.from_params(params[:auction], current_user.id)
     if @auction.save
       redirect_to auctions_path, :notice => 'Auction was successfully added.'
@@ -25,11 +24,10 @@ class AuctionsController < ApplicationController
 
   def destroy
     @auction = Auction.find(params[:id])
-    if @auction.user_ids.size > 1
-      current_user.auctions.delete(@auction)
-    else
-      @auction.destroy
+    @auction.destroyable? ? @auction.destroy : current_user.auctions.delete(@auction)
+    respond_to do |f|
+      f.html { redirect_to auctions_path, :notice => 'Auction was successfully removed.' }
+      f.js # destroy.erb.js
     end
-    redirect_to auctions_path, :notice => 'Auction was successfully removed.'
   end
 end
