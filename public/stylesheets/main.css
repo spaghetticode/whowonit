@@ -48,6 +48,7 @@ form#new_user input#user_submit, form#new_user input#auction_submit, form#user_n
   color: green;
   background: #eeeeee; }
 form#new_user #user_submit:hover, form#new_user #auction_submit:hover, form#user_new #user_submit:hover, form#user_new #auction_submit:hover, form#new_auction #user_submit:hover, form#new_auction #auction_submit:hover, form#user_edit #user_submit:hover, form#user_edit #auction_submit:hover {
+  cursor: pointer;
   border: 1px solid gray;
   color: #006600;
   background: #dddddd; }

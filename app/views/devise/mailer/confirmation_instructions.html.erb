@@ -4,8 +4,15 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
+    <div style="background: url(http://whowonit.heroku.com/images/logo-small.jpg) no-repeat black center left; height: 50px"></div>
     <p>
-      The buyer of the auction <%= link_to @auction.title, @auction.url %> is <%= link_to @buyer.name, @buyer.profile_url %>
+      Hello <%= @resource.email %>,
+    </p>
+    <p> 
+      Welcome to our website. You can confirm your account through the link below:
+    </p>
+    <p>
+      <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
     </p>
     <p style="color: #555; margin-top: 40px; border-top: 1px solid black; padding-top: 25px">
       You are receiving this email because you subscribed to our notification system. If you do not wish to receive those emails anymore, please go to our website and unsubscribe.

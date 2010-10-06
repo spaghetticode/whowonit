@@ -1,0 +1,6 @@
+Hello <%= @resource.email %>,
+
+Welcome to our website. You can confirm your account through the link below:
+  <%= link_to 'Confirm my account', confirmation_url(@resource, :confirmation_token => @resource.confirmation_token) %>
+
+You are receiving this email because you subscribed to our notification system. If you do not wish to receive those emails anymore, please go to our website and unsubscribe.
