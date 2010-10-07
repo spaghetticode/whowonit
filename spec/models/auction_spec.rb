@@ -94,7 +94,7 @@ describe Auction do
           :seller_ebay_id => 'boobs',
           :url => "http://ebay.com/item#{@auction.item_id}"
         )
-        TraderApi::GetItem.stub!(:new => @mock_ebay_item)
+        TradingApi::GetItem.stub!(:new => @mock_ebay_item)
       end
     
       it 'should assign fields as expected' do
@@ -171,7 +171,7 @@ describe Auction do
         :seller_ebay_id => @seller_name,
         :url => "http://ebay.com/item#{@params[:item_id]}"
       )
-      TraderApi::GetItem.stub!(:new => @mock_ebay_item)
+      TradingApi::GetItem.stub!(:new => @mock_ebay_item)
     end
     
     it 'should return a new instance' do

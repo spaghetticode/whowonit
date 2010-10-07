@@ -6,7 +6,7 @@ module HtmlSelectorsHelper
     when /the (login|registration|password recovery|edit password|resend confirmation) form/
       'form#user_new'
     when /the error notification area/
-      'div#error_explanation'
+      'div#errorExplanation'
     when /an auction row/
       'tr.auction'
     when /the auction row with id (\d+)/

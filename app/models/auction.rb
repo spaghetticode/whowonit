@@ -25,12 +25,12 @@ class Auction < ActiveRecord::Base
   end
   
   def set_external_attributes
-    item = TraderApi::GetItem.new(item_id)
+    item = TradingApi::GetItem.new(item_id)
     %w[title url end_time].each do |field|
       send "#{field}=", item.send(field)
     end
     self.seller = Ebayer.find_or_create_by_name(item.seller_ebay_id)
-    rescue TraderApi::RequestError # TODO should we do something? Should we keep the error rescue more general?
+    rescue TradingApi::RequestError # TODO should we do something? Should we keep the error rescue more general?
   end
   
   def seller_name

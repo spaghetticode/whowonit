@@ -15,8 +15,8 @@ RSpec.configure do |config|
 end
 
 require File.dirname(__FILE__) + '/../init'
-require File.dirname(__FILE__) + '/../lib/trader_api'
-require File.dirname(__FILE__) + '/../lib/trader_api/get_item'
+require File.dirname(__FILE__) + '/../lib/trading_api'
+require File.dirname(__FILE__) + '/../lib/trading_api/get_item'
 
 Dir['*_spec.rb'].each do |file|
   require file

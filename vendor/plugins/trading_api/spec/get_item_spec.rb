@@ -1,4 +1,4 @@
-module TraderApi
+module TradingApi
   describe GetItem do
     def nokogiri_xml_from(file)
       path = "#{File.dirname(__FILE__)}/fixtures/#{file}"

@@ -1,10 +1,10 @@
 Description:
-    Creates trader_api.yml file in rails config dir
+    Creates trading_api.yml file in rails config dir
 
 Example:
-    rails generate trader_api
+    rails generate trading_api
 
     This will create:
-       config/trader_api.yml
+       config/trading_api.yml
        
     After that you should edit the file with your ebay API personal data

@@ -1,4 +1,4 @@
-module TraderApi
+module TradingApi
   
   EBAY_SITES = {
     'Germany'     => :DE,
@@ -31,7 +31,7 @@ module TraderApi
   class TimeoutError < EbayError; end
   
   module Config
-    @@config = YAML.load_file("#{Rails.root}/config/trader_api_config.yml")[Rails.env]
+    @@config = YAML.load_file("#{Rails.root}/config/trading_api_config.yml")[Rails.env]
     
     class << self
       %w[dev_name app_name cert_name auth_token url].each do |method|
@@ -99,7 +99,7 @@ module TraderApi
     def check_for_errors
       if @xml_response.xpath('//Ack').text == 'Failure'
         message = @xml_response.xpath('//Errors/ShortMessage').text
-        error_class = ('TraderApi::' + @xml_response.xpath('//Errors/ErrorClassification').text).constantize
+        error_class = ('TradingApi::' + @xml_response.xpath('//Errors/ErrorClassification').text).constantize
         raise error_class, message
       end
     end

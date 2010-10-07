@@ -1,5 +1,5 @@
-module TraderApi
-  describe TraderApi do
+module TradingApi
+  describe TradingApi do
     def xml_from(file)
       File.read("#{File.dirname(__FILE__)}/fixtures/#{file}")
     end

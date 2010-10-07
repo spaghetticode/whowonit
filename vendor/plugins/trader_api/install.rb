@@ -1,1 +1,0 @@
-puts 'Run rails generate trader_api to install the required config file in Rails config directory.'

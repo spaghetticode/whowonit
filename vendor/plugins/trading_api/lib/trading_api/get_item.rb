@@ -1,4 +1,4 @@
-module TraderApi
+module TradingApi
   class GetItem < CallName
     attr_reader :item_id
   
