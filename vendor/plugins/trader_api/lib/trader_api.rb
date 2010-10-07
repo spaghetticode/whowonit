@@ -65,13 +65,9 @@ module TraderApi
        <RequesterCredentials>
        <eBayAuthToken>#{Config.auth_token}</eBayAuthToken>
        </RequesterCredentials>
-       #{custom_xml}
+       #{@call_name.custom_xml}
        </#{@call_name}>
       )
-    end
-    
-    def custom_xml
-      @call_name.custom_xml
     end
   end
   
