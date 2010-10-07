@@ -1,6 +1,11 @@
 %h2 Change your password
 = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-  = devise_error_messages!
+  - unless resource.errors.empty?
+    %h4 Please fix the following errors:
+    #errorExplanation
+      %ul
+        - resource.errors.full_messages.each do |message|
+          %li= message
   = f.hidden_field :reset_password_token
   %p
     = f.label :password
