@@ -7,20 +7,19 @@
     = csrf_meta_tag
   %body
     #header
-      #left-header
+      #logo
         %h1= link_to 'Who won it?', '/'
         %p Find out the ebayer who won that auction
-      #top-nav
-        #user-nav
-          %ul
-            %li= link_to 'Home', '/'
-            - if current_user
-              %li= link_to 'Account', edit_user_registration_path
-              %li= link_to 'Sign out', destroy_user_session_path
-            -else
-              %li= link_to 'Sign in', new_user_session_path
+      #nav
+        %ul
+          %li= link_to 'Home', '/'
           - if current_user
-            %p== signed in as #{current_user.email}
+            %li= link_to 'Account', edit_user_registration_path
+            %li= link_to 'Sign out', destroy_user_session_path
+          -else
+            %li= link_to 'Sign in', new_user_session_path
+        - if current_user
+          %p== signed in as #{current_user.email}
     #flash
       - flash.each do |type, message|
         %p{:class => type}= message
