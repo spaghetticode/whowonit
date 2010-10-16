@@ -66,7 +66,8 @@ a:hover {
       font-family: LithoAntiqueDemiBold, helvetica, arial, verdana, sans-serif;
       margin: 10px 0;
       font-size: 1em;
-      color: #333333; }
+      color: #333333;
+      line-height: 32px; }
       #signup form p input {
         font-size: 0.8em; }
 
@@ -205,5 +206,7 @@ div#footer {
   height: 60px;
   padding: 20px 40px;
   font-size: 0.9em; }
+  div#footer p {
+    line-height: 30px; }
   div#footer a {
     color: white; }
