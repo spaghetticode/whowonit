@@ -13,7 +13,7 @@ a:hover
   float: left
   font-size: 1.3em
   p
-    margin: 25px 0
+    margin: 25px 0 10px
     color: #444
     line-height: 28px
     word-spacing: 0.1em
@@ -39,6 +39,7 @@ a:hover
 form#new_user, form#user_new, form#new_auction, form#user_edit
   input
     border: 1px solid #aaa
+    background: white
     background: -moz-linear-gradient(0% 50% 270deg, white, #ddd)
     background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#ddd))
     
@@ -55,6 +56,22 @@ form#new_user, form#user_new, form#new_auction, form#user_edit
     border: 1px solid gray
     color: #060
     background: #ddd
+  
+  input#signup_submit
+    cursor: pointer
+    border: none
+    background: url("/images/signup.png") no-repeat scroll 0 0 transparent
+    display: block
+    height: 47px
+    line-height: 33px
+    margin: 15px auto
+    text-align: center
+    text-decoration: none
+    text-indent: -9999px
+    text-transform: capitalize
+    width: 160px
+  input#signup_submit:hover
+    background: url("/images/signup.png") no-repeat scroll 0 -47px transparent
 
 .green
   color: green

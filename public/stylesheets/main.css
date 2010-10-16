@@ -13,7 +13,7 @@ a:hover {
   float: left;
   font-size: 1.3em; }
   #signup p, #about p {
-    margin: 25px 0;
+    margin: 25px 0 10px;
     color: #444444;
     line-height: 28px;
     word-spacing: 0.1em; }
@@ -38,6 +38,7 @@ a:hover {
 
 form#new_user input, form#user_new input, form#new_auction input, form#user_edit input {
   border: 1px solid #aaaaaa;
+  background: white;
   background: -moz-linear-gradient(0% 50% 270deg, white, #dddddd);
   background: -webkit-gradient(linear, 0% 50%, 0% 100%, from(white), to(#dddddd));
   -moz-border-radius: 6px;
@@ -53,6 +54,21 @@ form#new_user #user_submit:hover, form#new_user #auction_submit:hover, form#user
   border: 1px solid gray;
   color: #006600;
   background: #dddddd; }
+form#new_user input#signup_submit, form#user_new input#signup_submit, form#new_auction input#signup_submit, form#user_edit input#signup_submit {
+  cursor: pointer;
+  border: none;
+  background: url("/images/signup.png") no-repeat scroll 0 0 transparent;
+  display: block;
+  height: 47px;
+  line-height: 33px;
+  margin: 15px auto;
+  text-align: center;
+  text-decoration: none;
+  text-indent: -9999px;
+  text-transform: capitalize;
+  width: 160px; }
+form#new_user input#signup_submit:hover, form#user_new input#signup_submit:hover, form#new_auction input#signup_submit:hover, form#user_edit input#signup_submit:hover {
+  background: url("/images/signup.png") no-repeat scroll 0 -47px transparent; }
 
 .green {
   color: green; }
