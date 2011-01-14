@@ -1,5 +1,5 @@
 $(document).ready(function(){	
-	height = $(window).height() - 360
+	height = $(window).height() - 370
 	$('#content').css('min-height', height + 'px');
 	$('form.button_to, form.new_auction').submit(function(){
 		$('input[type=submit]', this).attr('disabled', true).css('color', 'gray');
