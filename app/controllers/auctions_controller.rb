@@ -16,14 +16,14 @@ class AuctionsController < ApplicationController
 
   def create
     @auction = Auction.from_params(params[:auction], current_user.id)
-    respond_to do |f|
+    respond_to do |format|
       if @auction.save
         flash[:notice] = 'Auction was successfully added to your list.'
-        f.html { redirect_to auctions_path }
-        f.js
+        format.html { redirect_to auctions_path }
+        format.js
       else
-        f.html { render :action => "new" }
-        f.js
+        format.html { render :action => "new" }
+        format.js
       end
     end
   end

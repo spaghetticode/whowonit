@@ -11,17 +11,17 @@ class Auction < ActiveRecord::Base
   scope :ordered, order('end_time DESC')
   scope :pending, where(:buyer_id => nil)
   scope :closed,  lambda { where('end_time < ?', Time.now) }
-  scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.send(:days).ago) }
+  scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.days.ago) }
   
   def self.from_params(params, current_user_id)
-    auction = Auction.find_or_initialize_by_item_id(params[:item_id])
-    if auction.new_record?
-      auction.set_external_attributes
-      auction.user_ids = [current_user_id]
-    else
-      auction.user_ids << current_user_id
+    Auction.find_or_initialize_by_item_id(params[:item_id]).tap do |auction|
+      if auction.new_record?
+        auction.set_external_attributes
+        auction.user_ids = [current_user_id]
+      else
+        auction.user_ids << current_user_id
+      end
     end
-    auction
   end
   
   def set_external_attributes
