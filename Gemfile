@@ -19,7 +19,7 @@ group :test do
   gem 'database_cleaner'
   gem 'cucumber-rails'
   gem 'cucumber'
-  gem 'rspec-rails', '>= 2.0.0.beta.22'
+  gem 'rspec-rails'
   gem 'spork'
   gem 'launchy'
   gem 'autotest'
