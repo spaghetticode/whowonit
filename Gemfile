@@ -1,8 +1,7 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
+gem 'rails', '3.1.3'
 gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'ruby-debug'
 gem 'devise'
 gem 'nokogiri'
 gem 'haml-rails'
@@ -10,6 +9,9 @@ gem 'jquery-rails'
 gem 'hpricot'
 gem 'ruby_parser'
 gem 'xml-simple'
+gem 'sass'
+
+gem 'ebay_trading_api', :path => '../ebay_trading_api'
 
 
 group :test do
@@ -22,5 +24,6 @@ group :test do
   gem 'rspec-rails'
   gem 'spork'
   gem 'launchy'
-  gem 'autotest'
+  gem 'guard-rspec'
+  gem 'growl'
 end

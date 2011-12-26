@@ -30,11 +30,11 @@ class AuctionsController < ApplicationController
 
   def destroy
     @auction = Auction.find(params[:id])
-    @auction.destroyable? ? @auction.destroy : current_user.auctions.delete(@auction)
+    @auction.destroy_for_user(current_user)
     flash[:notice] = 'Auction was successfully removed from your list.'
     respond_to do |f|
       f.html { redirect_to auctions_path }
-      f.js # destroy.erb.js
+      f.js
     end
   end
 end

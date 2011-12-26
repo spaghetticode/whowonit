@@ -191,7 +191,6 @@ describe Auction do
         :item_id => @params[:item_id],
         :seller => Factory(:ebayer, :name => @seller_name)
       )
-      puts "created with #{@params[:item_id]}"
       Auction.from_params(@params, @user.id).should == auction
     end
   end
@@ -202,7 +201,7 @@ describe Auction do
     end
 
     it 'should find item id when passing an url' do
-      param = 'http://www.ebay.com/itm/SOL-20-TERMINAL-VINTAGE-COMPUTER-MUSEUM-ALTAIR-8800-IMSAI-8080-ERA-FIRST-PC-/270865738710'
+      param = 'http://www.ebay.com/itm/SOL-20-TERMINAL-VINTAGE-PC/270865738710'
       Auction.send(:sanitize_item_id, param).should == '270865738710'
     end
   end
