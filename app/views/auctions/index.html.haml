@@ -7,6 +7,7 @@
     %tr
       %th{:colspan => 2} Auction
       %th End time
+      %th Price
       %th Seller
       %th Buyer
   %tbody
@@ -15,6 +16,7 @@
         %td.center= gallery_image_tag auction
         %td= link_to auction.title, auction.url
         %td{:class => color_for(auction)}= auction.end_time.to_s(:auction_end)
+        %td{:class => 'final_price'}= auction.final_price
         %td= profile_for(auction.seller)
         %td= profile_for(auction.buyer)
         %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
