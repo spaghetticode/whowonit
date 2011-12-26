@@ -167,16 +167,16 @@ describe Auction do
 
   describe 'SELF.FROM_PARAMS' do
     before do
-      @params = {:item_id => '123123'}
+      @params = {:item_id => Factory.build(:auction).item_id}
       @seller_name = 'boobs'
       @user = Factory(:user)
       @mock_ebay_item = mock(
-        :item_id => @params[:item_id],
-        :title => 'Wow r@are l@@k',
-        :end_time => 1.day.from_now,
+        :item_id        => @params[:item_id],
+        :title          => 'Wow r@are l@@k',
+        :end_time       => 1.day.from_now,
+        :url            => "http://ebay.com/item#{@params[:item_id]}",
         :seller_ebay_id => @seller_name,
-        :url => "http://ebay.com/item#{@params[:item_id]}",
-        :final_price => TradingApi::Money.new(mock(:[] => 'USD', :text => '200'))
+        :final_price    => TradingApi::Money.new(mock(:[] => 'USD', :text => '200'))
       )
       TradingApi::GetItem.stub!(:new => @mock_ebay_item)
     end
@@ -191,7 +191,19 @@ describe Auction do
         :item_id => @params[:item_id],
         :seller => Factory(:ebayer, :name => @seller_name)
       )
+      puts "created with #{@params[:item_id]}"
       Auction.from_params(@params, @user.id).should == auction
+    end
+  end
+
+  describe '.sanitize_item_id' do
+    it 'should return the item id when passing an item id' do
+      Auction.send(:sanitize_item_id, '270865738710').should == '270865738710'
+    end
+
+    it 'should find item id when passing an url' do
+      param = 'http://www.ebay.com/itm/SOL-20-TERMINAL-VINTAGE-COMPUTER-MUSEUM-ALTAIR-8800-IMSAI-8080-ERA-FIRST-PC-/270865738710'
+      Auction.send(:sanitize_item_id, param).should == '270865738710'
     end
   end
 end

@@ -16,6 +16,7 @@ class Auction < ActiveRecord::Base
   scope :visible, lambda { where('end_time >= ?', VISIBILITY_DAYS.days.ago) }
 
   def self.from_params(params, current_user_id)
+    params[:item_id] = sanitize_item_id(params[:item_id])
     Auction.find_or_initialize_by_item_id(params[:item_id]).tap do |auction|
       if auction.new_record?
         auction.set_external_attributes
@@ -70,5 +71,13 @@ class Auction < ActiveRecord::Base
     html = Nokogiri.HTML(seller.feedback_html)
     feedback = html.css('.bot td:nth-child(2)').find {|t| t.text =~ /#{item_id}/}
     feedback && feedback.parent.previous_sibling.children[2].children.css('.mbg').children.css('a').first[:title].match(/Member id (\w+)/)[1]
+  end
+
+  def self.sanitize_item_id(id_or_url)
+    if id_or_url =~ /^\d+$/
+      id_or_url
+    else
+      id_or_url[/\d{12}/]
+    end
   end
 end
