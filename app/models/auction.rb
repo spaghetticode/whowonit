@@ -7,6 +7,8 @@ class Auction < ActiveRecord::Base
   validates_presence_of :title, :url, :end_time, :item_id, :seller
   validates_uniqueness_of :url, :item_id
 
+  serialize :final_price, TradingApi::Money
+
   VISIBILITY_DAYS = 90
   scope :ordered, order('end_time DESC')
   scope :pending, where(:buyer_id => nil)
