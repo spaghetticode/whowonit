@@ -93,9 +93,9 @@ describe Auction do
           :end_time => 1.day.from_now,
           :seller_ebay_id => 'boobs',
           :url => "http://ebay.com/item#{@auction.item_id}",
-          :final_price => TradingApi::Money.new(mock(:[] => 'USD', :text => '200'))
+          :final_price => EbayTrading::Money.new(mock(:[] => 'USD', :text => '200'))
         )
-        TradingApi::GetItem.stub!(:new => @mock_ebay_item)
+        EbayTrading::GetItem.stub!(:new => @mock_ebay_item)
       end
 
       it 'should assign fields as expected' do
@@ -176,9 +176,9 @@ describe Auction do
         :end_time       => 1.day.from_now,
         :url            => "http://ebay.com/item#{@params[:item_id]}",
         :seller_ebay_id => @seller_name,
-        :final_price    => TradingApi::Money.new(mock(:[] => 'USD', :text => '200'))
+        :final_price    => EbayTrading::Money.new(mock(:[] => 'USD', :text => '200'))
       )
-      TradingApi::GetItem.stub!(:new => @mock_ebay_item)
+      EbayTrading::GetItem.stub!(:new => @mock_ebay_item)
     end
 
     it 'should return a new instance' do

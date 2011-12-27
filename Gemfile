@@ -10,8 +10,7 @@ gem 'hpricot'
 gem 'ruby_parser'
 gem 'xml-simple'
 gem 'sass'
-
-gem 'ebay_trading_api', :path => '../ebay_trading_api'
+gem 'ebay_trading', :path => '../ebay_trading'
 
 
 group :test do

@@ -7,7 +7,7 @@ class Auction < ActiveRecord::Base
   validates_presence_of :title, :url, :end_time, :item_id, :seller
   validates_uniqueness_of :url, :item_id
 
-  serialize :final_price, EbayTradingApi::Money
+  serialize :final_price, EbayTrading::Money
 
   VISIBILITY_DAYS = 90
   scope :ordered, order('end_time DESC')
@@ -28,12 +28,12 @@ class Auction < ActiveRecord::Base
   end
 
   def set_external_attributes
-    item = EbayTradingApi::GetItem.new(item_id)
+    item = EbayTrading::GetItem.new(item_id)
     %w[title url end_time final_price].each do |field|
       send "#{field}=", item.send(field)
     end
     self.seller = Ebayer.find_or_create_by_name(item.seller_ebay_id)
-    rescue EbayTradingApi::RequestError # TODO should we do something? Should we keep the error rescue more general?
+    rescue EbayTrading::RequestError # TODO should we do something? Should we keep the error rescue more general?
   end
 
   def seller_name
