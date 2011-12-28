@@ -1,0 +1,1 @@
+ActionDispatch::Flash::FlashHash.send :include, FlashExtension

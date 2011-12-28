@@ -1,2 +1,2 @@
 $('tr#id-<%= @auction.id %>').fadeOut();
-$('#flash').html('<p><%= flash.delete(notice) %></p>')
+$('#flash').html('<p><%= flash.show_and_delete(notice) %></p>')
