@@ -10,5 +10,5 @@ Then /^I should receive an email notification$/ do
 end
 
 Then /^I should see the auction with the buyer information$/ do
-  And %(I should see "#{@buyer.name}" within the auction row with id #{@auction.id})
+  step %(I should see "#{@buyer.name}" within the auction row with id #{@auction.id})
 end

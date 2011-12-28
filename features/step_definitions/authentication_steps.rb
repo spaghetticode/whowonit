@@ -52,21 +52,21 @@ When /^I fill in my password$/ do
 end
 
 Given /^I follow the registration process$/ do
-  Given 'I go to the registration page'
-  And   'I fill in my data within the registration form'
-  And   'I submit the registration form'
+  step 'I go to the registration page'
+  step 'I fill in my data within the registration form'
+  step 'I submit the registration form'
 end
 
 When /^I try to confirm my account$/ do
-  When  'I open the email with subject "Confirmation instructions"'
-  And   'I follow "Confirm my account" in the email'
+  step 'I open the email with subject "Confirmation instructions"'
+  step 'I follow "Confirm my account" in the email'
 end
 
 Given /^I requested to reset my password$/ do
-  Given  'I am a registered user'
-  When   'I go to the password recovery page'
-  And    'I fill in my email within the password recovery form'
-  And    'I submit the password recovery form'
+  step 'I am a registered user'
+  step 'I go to the password recovery page'
+  step 'I fill in my email within the password recovery form'
+  step 'I submit the password recovery form'
 end
 
 Given /^I did not receive my confirmation instructions$/ do
@@ -75,12 +75,12 @@ Given /^I did not receive my confirmation instructions$/ do
 end
 
 Given /^I am logged in$/ do
-  Given 'I am a registered user'
-  When  'I go to the login page'
-  And   'I fill in my credentials within the login form'
-  And   'I submit the login form'
+  step 'I am a registered user'
+  step 'I go to the login page'
+  step 'I fill in my credentials within the login form'
+  step 'I submit the login form'
 end
 
 Given /^I should see my email/ do
-  And %(I should see "#{@user.email}")
+  step %(I should see "#{@user.email}")
 end

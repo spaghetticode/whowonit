@@ -15,13 +15,13 @@ end
 
 Given /^I added a few auctions to my list$/ do
   2.times do
-    And 'I add a new auction to my list'
+    step 'I add a new auction to my list'
   end
 end
 
 Then /^I should see all my visible auctions (\w+) field$/ do |field|
   @user.visible_auctions.each do |auction|
-    And %(I should see "#{auction.send(field)}" within an auction row)
+    step %(I should see "#{auction.send(field)}" within the auction row with id #{auction.id})
   end
 end
 
@@ -30,24 +30,24 @@ When /^I add a new auction to my list$/ do
 end
 
 Then /^I should see the new auction details$/ do
-  And %(I should see "#{@auction.title}" within an auction row)
+  step %(I should see "#{@auction.title}" within the auction row with id #{@auction.id})
 end
 
 Then /^I should not see the old last auction details$/ do
-  And %(I should not see "#{@destroyed.title}" within an auction row)
+  step %(I should not see "#{@destroyed.title}" within the auction table)
 end
 
 When /^I remove the last auction from my list$/ do
-  Given 'I added a few auctions to my list'
+  step 'I added a few auctions to my list'
   @destroyed = @user.auctions.last
-  When 'I go to the auctions list page'
-  And  %(I press "remove" within the auction row with id #{@destroyed.id})
+  step 'I go to the auctions list page'
+  step  %(I press "remove" within the auction row with id #{@destroyed.id})
 end
 
 Then /^I should (not )?see the add auction form$/ do |neg|
   if neg.blank?
-    And %(I should see "Add Auction" within the add auction form)
+    step %(I should see "Add Auction" within the add auction form)
   else
-    And 'I should not see "Add Auction"'
+    step 'I should not see "Add Auction"'
   end
 end
