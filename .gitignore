@@ -4,3 +4,4 @@ db/*.sqlite3
 log/*.log
 tmp/**/*
 capy*
+config/ebay_trading.yml

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/spaghetticode/ebay_trading.git
-  revision: 450f5e204ba8171cc53bba1777c38c9a7a65dd96
+  revision: 43d388d5bd38de6b6aef9730528e1a6306cc69a9
   specs:
     ebay_trading (0.0.1)
       nokogiri

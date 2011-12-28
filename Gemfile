@@ -1,7 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
-gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'devise'
 gem 'nokogiri'
 gem 'haml-rails'
@@ -11,13 +10,13 @@ gem 'ruby_parser'
 gem 'xml-simple'
 gem 'sass'
 gem 'ebay_trading', :git => 'git://github.com/spaghetticode/ebay_trading.git'
-# gem 'ebay_trading', :path => '../ebay_trading'
 
 group :production do
   gem 'pg'
 end
 
-group :test do
+group :test, :development do
+  gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'email_spec'
   gem 'factory_girl_rails'
   gem 'capybara'
