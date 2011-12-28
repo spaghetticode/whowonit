@@ -10,8 +10,12 @@ gem 'hpricot'
 gem 'ruby_parser'
 gem 'xml-simple'
 gem 'sass'
-gem 'ebay_trading', :path => '../ebay_trading'
+gem 'ebay_trading', :git => 'git://github.com/spaghetticode/ebay_trading.git'
+# gem 'ebay_trading', :path => '../ebay_trading'
 
+group :production do
+  gem 'pg'
+end
 
 group :test do
   gem 'email_spec'
