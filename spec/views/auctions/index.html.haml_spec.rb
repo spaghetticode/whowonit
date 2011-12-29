@@ -1,20 +1,23 @@
 require 'spec_helper'
 
-describe "auctions/index.html.haml" do
-  before(:each) do
+describe 'auctions/index.html.haml' do
+  before do
     assign(:auctions, [
       stub_model(Auction,
-        :url => "Url",
+        :url => 'Url',
+        :end_time => Time.now,
+        :seller => stub_model(Ebayer, :name => 'Name')
+      ),
+      stub_model(Auction,
+        :url => 'Url',
         :end_time => Time.now,
         :seller => stub_model(Ebayer, :name => 'Name')
       )
     ])
   end
 
-  it "renders a list of auctions" do
+  it 'renders a list of auctions' do
     render
-    pending 'rspec bug' do
-      rendered.should have_selector("tr>td", :content => "Url".to_s, :count => 2)
-    end
+    rendered.should have_selector('tr>td', :size => 2, :content => 'Url')
   end
 end
