@@ -1,10 +1,11 @@
+var message, newRow;
 <% if @auction.new_record? %>
 	message = '<p class="alert">Item ID is not valid, or not available anymore.</p>';
 <% else %>
 	message = '<p class="notice"><%= flash.show_and_delete(:notice) %></p>';
 	$('#auction_item_id').attr('value', '');
-	new_row = $('<tr id="id-<%= @auction.id %>" class="auction"><td class="center"><%= gallery_image_tag(@auction) %></td><td><%= link_to @auction.title, @auction.url %></td><td><%= @auction.end_time.to_s(:auction_end) %></td><td class="final_price"><%= @auction.final_price %></td><td><%= profile_for(@auction.seller) %></td><td><%= profile_for(@auction.buyer) %></td><td class="red"><%= button_to "remove", @auction, :confirm => "Are you sure?", :method => :delete %></td></tr>')
-	new_row.css('display', 'none').prependTo($('table.auctions tbody')).fadeIn();
+	newRow = $('<%= jquery_wrappable(@auction) %>');
+	newRow.css('display', 'none').prependTo($('table.auctions tbody')).fadeIn();
 <% end %>
 $('#flash').html(message);
 $('#auction_submit').attr('disabled', false).css('color', 'green');
