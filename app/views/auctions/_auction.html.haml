@@ -1,8 +1,9 @@
-%tr.auction{:id => "id-#{auction.id}"}
-  %td.center= gallery_image_tag auction
-  %td= link_to auction.title, auction.url
-  %td{:class => color_for(auction)}= auction.end_time.to_s(:auction_end)
-  %td{:class => 'final_price'}= auction.final_price.to_s
-  %td= profile_for(auction.seller)
-  %td= profile_for(auction.buyer)
-  %td.red= button_to 'remove', auction, :confirm => 'Are you sure?', :method => :delete
+- present auction do |presenter|
+  %tr.auction{:id => "id-#{presenter.id}"}
+    %td.center= presenter.thumbnail_image
+    %td= presenter.link
+    %td{:class => presenter.color}= presenter.end_time
+    %td{:class => 'final_price'}= presenter.final_price
+    %td= presenter.seller_profile
+    %td= presenter.buyer_profile
+    %td.red= presenter.remove_button
