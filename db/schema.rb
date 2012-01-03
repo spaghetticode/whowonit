@@ -13,15 +13,15 @@
 ActiveRecord::Schema.define(:version => 20111226102039) do
 
   create_table "auctions", :force => true do |t|
-    t.string   "url",         :null => false
-    t.datetime "end_time",    :null => false
-    t.string   "title",       :null => false
-    t.string   "item_id",     :null => false
-    t.integer  "seller_id",   :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "buyer_id"
-    t.string   "final_price"
+    t.string    "url",         :null => false
+    t.timestamp "end_time",    :null => false
+    t.string    "title",       :null => false
+    t.string    "item_id",     :null => false
+    t.integer   "seller_id",   :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.integer   "buyer_id"
+    t.string    "final_price"
   end
 
   create_table "auctions_users", :id => false, :force => true do |t|
@@ -33,32 +33,32 @@ ActiveRecord::Schema.define(:version => 20111226102039) do
   add_index "auctions_users", ["user_id", "auction_id"], :name => "index_auctions_users_on_user_id_and_auction_id", :unique => true
 
   create_table "ebayers", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string    "name",       :null => false
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
   end
 
   add_index "ebayers", ["name"], :name => "index_ebayers_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
-    t.string   "reset_password_token"
-    t.string   "remember_token"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                       :default => 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "time_zone"
+    t.string    "email",                               :default => "", :null => false
+    t.string    "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string    "password_salt",                       :default => "", :null => false
+    t.string    "reset_password_token"
+    t.string    "remember_token"
+    t.timestamp "remember_created_at"
+    t.integer   "sign_in_count",                       :default => 0
+    t.timestamp "current_sign_in_at"
+    t.timestamp "last_sign_in_at"
+    t.string    "current_sign_in_ip"
+    t.string    "last_sign_in_ip"
+    t.string    "confirmation_token"
+    t.timestamp "confirmed_at"
+    t.timestamp "confirmation_sent_at"
+    t.string    "authentication_token"
+    t.timestamp "created_at"
+    t.timestamp "updated_at"
+    t.string    "time_zone"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

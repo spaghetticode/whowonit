@@ -1,0 +1,5 @@
+env:
+  - DB=sqlite
+
+before_script:
+  - 'bundle exec rake db:migrate'

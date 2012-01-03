@@ -28,4 +28,5 @@ group :test, :development do
   gem 'launchy'
   gem 'guard-rspec'
   gem 'growl'
+  gem 'pry'
 end
